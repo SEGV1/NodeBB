@@ -11,6 +11,12 @@ interface Callback {
 	(err: Error | null, pid?: number): void;
 }
 
+interface Options {
+	dev?: boolean;
+	log?: boolean;
+	silent?: boolean;
+}
+
 
 function getRunningPid(callback) {
     fs.readFile(paths.pidfile, {
