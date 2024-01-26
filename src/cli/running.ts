@@ -6,6 +6,12 @@ import { path } from '../constants';
 
 const cwd = paths.baseDir;
 
+
+interface Callback {
+	(err: Error | null, pid?: number): void;
+}
+
+
 function getRunningPid(callback) {
     fs.readFile(paths.pidfile, {
         encoding: 'utf-8',
