@@ -30,8 +30,8 @@ exports.log = exports.status = exports.restart = exports.stop = exports.start = 
 const fs = __importStar(require("fs"));
 const childProcess = __importStar(require("child_process"));
 const chalk_1 = __importDefault(require("chalk"));
-const debugFork_1 = __importDefault(require("../meta/debugFork")); // Adjust as needed based on your actual module export
-const constants_1 = require("../constants"); // Adjust as needed based on your actual module export
+const debugFork_1 = __importDefault(require("../meta/debugFork"));
+const constants_1 = require("../constants");
 const cwd = constants_1.paths.baseDir;
 function getRunningPid(callback) {
     fs.readFile(constants_1.paths.pidfile, { encoding: 'utf-8' }, (err, data) => {
