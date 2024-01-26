@@ -18,7 +18,7 @@ interface Options {
 }
 
 
-function getRunningPid(callback) {
+function getRunningPid(callback: Callback): void {
     fs.readFile(paths.pidfile, {
         encoding: 'utf-8',
     }, (err, pid) => {
@@ -26,8 +26,8 @@ function getRunningPid(callback) {
             return callback(err);
         }
 
-        pid = parseInt(pid, 10);
-
+        const pid = parseInt(pid, 10);
+	
         try {
             process.kill(pid, 0);
             callback(null, pid);
@@ -37,7 +37,7 @@ function getRunningPid(callback) {
     });
 }
 
-function start(options) {
+function start(options: Options): childProcess.ChildProcess | undefined {
     if (options.dev) {
         process.env.NODE_ENV = 'development';
         fork(paths.loader, ['--no-daemon', '--no-silent'], {
@@ -78,7 +78,7 @@ function start(options) {
     return child;
 }
 
-function nodeBBStop() {
+function nodeBBStop(): void {
     getRunningPid((err, pid) => {
         if (!err) {
             process.kill(pid, 'SIGTERM');
@@ -89,7 +89,7 @@ function nodeBBStop() {
     });
 }
 
-function restart(options) {
+function restart(options): void {
     getRunningPid((err, pid) => {
         if (!err) {
             console.log(chalk.bold('\nRestarting NodeBB'));
@@ -103,7 +103,7 @@ function restart(options) {
     });
 }
 
-function nodeBBStatus() {
+function nodeBBStatus(): void {
     getRunningPid((err, pid) => {
         if (!err) {
             console.log(`\n${[
@@ -119,7 +119,7 @@ function nodeBBStatus() {
     });
 }
 
-function log() {
+function log(): void {
     console.log(`${chalk.red('\nHit ') + chalk.bold('Ctrl-C ') + chalk.red('to exit\n')}\n`);
     childProcess.spawn('tail', ['-F', './logs/output.log'], {
         stdio: 'inherit',
