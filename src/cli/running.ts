@@ -127,8 +127,4 @@ function log(): void {
     });
 }
 
-exports.start = start;
-exports.stop = nodeBBStop;
-exports.restart = restart;
-exports.status = nodeBBStatus;
-exports.log = log;
+export { start, nodeBBStop as stop, restart, nodeBBStatus as status, log };
