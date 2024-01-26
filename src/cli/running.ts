@@ -1,11 +1,8 @@
-'use strict';
-
-const fs = require('fs');
-const childProcess = require('child_process');
-const chalk = require('chalk');
-
-const fork = require('../meta/debugFork');
-const { paths } = require('../constants');
+import * as fs from 'fs';
+import * as childProcess from 'child_process';
+import chalk from 'chalk';
+import fork from '../meta/debugFork';
+import { path } from '../constants';
 
 const cwd = paths.baseDir;
 
